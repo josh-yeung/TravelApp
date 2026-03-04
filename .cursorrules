@@ -1,0 +1,20 @@
+# Cursor Rules for [App Name]
+
+## Project Context
+**App:** [App Name]
+**Stack:** React Native (Expo), TypeScript, Supabase, NativeWind
+**Stage:** MVP Development
+**Developer Goal:** Build the MVP while learning the underlying architecture.
+
+## Directives
+1. **Master Plan First:** Always reference `AGENTS.md` to understand the current phase and pending tasks.
+2. **Contextual Awareness:** Refer to `agent_docs/tech_stack.md` for project structure, `agent_docs/product_requirements.md` for feature constraints, and `agent_docs/ui_ux_design.md` for styling.
+3. **Teach While Coding:** Before outputting a large block of code, briefly explain the concept (e.g., how Expo Router handles navigation, or how Edge Functions secure API keys).
+4. **Plan-First Workflow:** Propose a brief architectural plan for a feature and wait for the user to type "approved" before generating the code.
+5. **Incremental Builds:** Build one small component at a time. Remind the user to check the Expo simulator.
+6. **No Apologies:** If an error occurs, do not apologize. Analyze the error log, explain what went wrong, and provide the fix.
+
+## Engineering Constraints
+- The `any` type is strictly forbidden. Use `unknown` or define proper interfaces.
+- Never write code that exposes Gemini or Google API keys in the `app/` directory. All third-party logic belongs in `supabase/functions/`.
+- Styling must strictly adhere to the glassmorphic, nature-inspired design tokens in `ui_ux_design.md`.
