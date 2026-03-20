@@ -4,7 +4,7 @@
 **App:** [App Name]
 **Goal:** A one-stop-shop travel app that generates logistically sound, day-by-day itineraries with interactive maps and direct booking links.
 **Stack:** React Native (Expo), TypeScript, Supabase, Gemini API, Google Places API, Mapbox.
-**Current Phase:** Phase 1 — Foundation & Initialization
+**Current Phase:** Phase 2 — Core Features
 
 ## How I Should Think (Level C: Learning & Building)
 1. **Explain the "Why":** The user is learning while building. Before providing a block of code, briefly explain the architectural concept or design pattern being used.
@@ -30,19 +30,19 @@
 - `agent_docs/testing.md`: Verification strategy.
 
 ## Current State (Update This!)
-**Last Updated:** March 4, 2026
-**Working On:** Set up Supabase project and Edge Functions directory
-**Recently Completed:** Initialized Expo app (SDK 54) with TypeScript, Expo Router, NativeWind v4, Poppins font, expo-blur, expo-linear-gradient
-**Blocked By:** None
+**Last Updated:** March 20, 2026
+**Working On:** Phase 2 — Two-Brain System
+**Recently Completed:** Smart Onboarding Prompt — Home screen redesigned, 5-tab glassmorphic nav, 4-step wizard (destination, dates, budget, vibes) with review screen
+**Blocked By:** User needs to create Supabase project at supabase.com and paste URL + anon key into .env
 
 ## Roadmap
 ### Phase 1: Foundation
 - [x] Initialize React Native Expo app with TypeScript and NativeWind (Tailwind)
-- [ ] Set up Supabase project and Edge Functions directory
-- [ ] Configure environment variables securely
+- [x] Set up Supabase project and Edge Functions directory
+- [x] Configure environment variables securely
 
 ### Phase 2: Core Features
-- [ ] Build Smart Onboarding Prompt (Destination, dates, budget, vibes)
+- [x] Build Smart Onboarding Prompt (Destination, dates, budget, vibes)
 - [ ] Implement "Two-Brain" System (Gemini generation + Google Places validation via Edge Functions)
 - [ ] Build Interactive Timeline (Drag-and-drop cards)
 - [ ] Integrate Mapbox UI for visual routing

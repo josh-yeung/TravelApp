@@ -1,98 +1,164 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, Pressable, TextInput } from "react-native";
+import { useRouter } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
+import { Chip } from "@/components/chip";
+import { DestinationCard } from "@/components/destination-card";
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+const CATEGORIES = [
+  { label: "All Package", icon: "🌍" },
+  { label: "Flight Package", icon: "✈️" },
+  { label: "Hotel Package", icon: "🏨" },
+  { label: "Nature", icon: "🌿" },
+];
+
+const NATURE_DESTINATIONS = [
+  {
+    title: "Tavarua Island",
+    location: "Nadi, Fiji",
+    rating: 4.8,
+    imageUrl: "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=400&q=80",
+  },
+  {
+    title: "Altea",
+    location: "Costa Blanca, Spain",
+    rating: 4.9,
+    imageUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&q=80",
+  },
+  {
+    title: "Maafushi Island",
+    location: "Maldives",
+    rating: 4.7,
+    imageUrl: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=400&q=80",
+  },
+];
+
+const POPULAR_DESTINATIONS = [
+  {
+    title: "Bali",
+    location: "Indonesia",
+    rating: 4.2,
+    imageUrl: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80",
+  },
+  {
+    title: "Santorini",
+    location: "Greece",
+    rating: 4.6,
+    imageUrl: "https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=600&q=80",
+  },
+];
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const router = useRouter();
+  const insets = useSafeAreaInsets();
+  const [activeCategory, setActiveCategory] = useState(0);
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+  return (
+    <View className="flex-1 bg-background" style={{ paddingTop: insets.top }}>
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ paddingBottom: 100 }}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Header */}
+        <View className="flex-row items-center justify-between px-6 pt-4 pb-2">
+          <Text className="text-3xl font-poppins-bold text-heading leading-tight">
+            Find your{"\n"}favorite place
+          </Text>
+          <Pressable className="w-12 h-12 rounded-full bg-surface items-center justify-center">
+            <Ionicons name="notifications-outline" size={22} color="#1A1A1A" />
+          </Pressable>
+        </View>
+
+        {/* Search Bar */}
+        <Pressable
+          onPress={() => router.push("/wizard/destination")}
+          className="flex-row items-center mx-6 mt-4 px-4 py-3.5 bg-surface rounded-pill"
+        >
+          <Ionicons name="search-outline" size={20} color="#8E8E93" />
+          <Text className="ml-3 text-subtitle font-poppins text-sm flex-1">
+            Search Destination, place...
+          </Text>
+          <Ionicons name="options-outline" size={20} color="#8E8E93" />
+        </Pressable>
+
+        {/* Category Chips */}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 24, gap: 10 }}
+          className="mt-5"
+        >
+          {CATEGORIES.map((cat, i) => (
+            <Chip
+              key={cat.label}
+              label={cat.label}
+              icon={cat.icon}
+              selected={i === activeCategory}
+              onPress={() => setActiveCategory(i)}
+            />
+          ))}
+        </ScrollView>
+
+        {/* Nature Section */}
+        <View className="mt-7">
+          <View className="flex-row items-center justify-between px-6 mb-4">
+            <Text className="text-lg font-poppins-semibold text-heading">
+              Spend little time in nature
+            </Text>
+            <Pressable>
+              <Text className="text-sm font-poppins-medium text-subtitle">View All</Text>
+            </Pressable>
+          </View>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 24, gap: 14 }}
+          >
+            {NATURE_DESTINATIONS.map((dest) => (
+              <DestinationCard
+                key={dest.title}
+                title={dest.title}
+                location={dest.location}
+                rating={dest.rating}
+                imageUrl={dest.imageUrl}
+                size="small"
+                onPress={() => router.push("/wizard/destination")}
+              />
+            ))}
+          </ScrollView>
+        </View>
+
+        {/* Popular Destinations Section */}
+        <View className="mt-7">
+          <View className="flex-row items-center justify-between px-6 mb-4">
+            <Text className="text-lg font-poppins-semibold text-heading">
+              Popular Destinations
+            </Text>
+            <Pressable>
+              <Text className="text-sm font-poppins-medium text-subtitle">View all</Text>
+            </Pressable>
+          </View>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 24, gap: 14 }}
+          >
+            {POPULAR_DESTINATIONS.map((dest) => (
+              <DestinationCard
+                key={dest.title}
+                title={dest.title}
+                location={dest.location}
+                rating={dest.rating}
+                imageUrl={dest.imageUrl}
+                size="large"
+                onPress={() => router.push("/wizard/destination")}
+              />
+            ))}
+          </ScrollView>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
