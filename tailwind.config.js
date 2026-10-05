@@ -6,7 +6,9 @@ module.exports = {
     extend: {
       colors: {
         primary: "#8DE175",
-        background: "#FFFFFF",
+        forest: "#44655A",
+        "lime-accent": "#B0D500",
+        background: "#F7FAFB",
         surface: "#F8F9FA",
         heading: "#1A1A1A",
         subtitle: "#8E8E93",

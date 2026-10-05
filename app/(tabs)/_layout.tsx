@@ -1,33 +1,66 @@
 import { Tabs } from "expo-router";
 import { View, Text, Pressable } from "react-native";
-import { BlurView } from "expo-blur";
 import { Ionicons } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import type { ComponentProps } from "react";
 
-const TAB_CONFIG = [
-  { name: "index", label: "Explore", icon: "compass" as const },
-  { name: "trip-plans", label: "Trip Plans", icon: "calendar" as const },
-  { name: "my-trip", label: "My trip", icon: "add" as const },
-  { name: "favorites", label: "Favorite", icon: "heart" as const },
-  { name: "messages", label: "Message", icon: "mail" as const },
+type TabBarProps = NonNullable<ComponentProps<typeof Tabs>["tabBar"]> extends (
+  props: infer P
+) => unknown
+  ? P
+  : never;
+
+interface TabItem {
+  name: string;
+  label: string;
+  activeIcon: keyof typeof Ionicons.glyphMap;
+  inactiveIcon: keyof typeof Ionicons.glyphMap;
+}
+
+const TAB_CONFIG: TabItem[] = [
+  {
+    name: "index",
+    label: "Explore",
+    activeIcon: "compass",
+    inactiveIcon: "compass-outline",
+  },
+  {
+    name: "plan",
+    label: "Plan",
+    activeIcon: "add-circle",
+    inactiveIcon: "add-circle-outline",
+  },
+  {
+    name: "my-trip",
+    label: "Trips",
+    activeIcon: "briefcase",
+    inactiveIcon: "briefcase-outline",
+  },
 ];
 
-function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+function CustomTabBar({ state, navigation }: TabBarProps) {
   const insets = useSafeAreaInsets();
 
   return (
     <View
-      className="absolute bottom-0 left-4 right-4 overflow-hidden rounded-pill"
+      className="absolute bottom-0 left-6 right-6"
       style={{ marginBottom: Math.max(insets.bottom, 12) }}
     >
-      <BlurView intensity={90} tint="dark" className="flex-row items-center justify-around py-2.5 px-2">
+      <View
+        className="flex-row items-center justify-center rounded-pill border border-black bg-white/75 px-8 py-1"
+        style={{
+          gap: 28,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.08,
+          shadowRadius: 12,
+          elevation: 6,
+        }}
+      >
         {state.routes.map((route, index) => {
           const isFocused = state.index === index;
           const config = TAB_CONFIG[index];
           if (!config) return null;
-
-          const isCenter = index === 2;
 
           const onPress = () => {
             const event = navigation.emit({
@@ -40,37 +73,33 @@ function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             }
           };
 
-          if (isCenter) {
-            return (
-              <Pressable
-                key={route.key}
-                onPress={onPress}
-                className="items-center justify-center -mt-5"
-              >
-                <View className="w-14 h-14 rounded-full bg-primary items-center justify-center shadow-lg">
-                  <Ionicons name="add" size={28} color="#FFFFFF" />
-                </View>
-                <Text className="text-white/70 text-[10px] font-poppins mt-1">
-                  {config.label}
-                </Text>
-              </Pressable>
-            );
-          }
-
           return (
-            <Pressable key={route.key} onPress={onPress} className="items-center py-1 px-2">
+            <Pressable
+              key={route.key}
+              onPress={onPress}
+              className={`items-center justify-center rounded-pill px-5 py-2 ${
+                isFocused ? "bg-forest" : ""
+              }`}
+              style={
+                isFocused
+                  ? {
+                      shadowColor: "#536600",
+                      shadowOffset: { width: 0, height: 10 },
+                      shadowOpacity: 0.2,
+                      shadowRadius: 8,
+                      elevation: 4,
+                    }
+                  : undefined
+              }
+            >
               <Ionicons
-                name={
-                  isFocused
-                    ? (config.icon as keyof typeof Ionicons.glyphMap)
-                    : (`${config.icon}-outline` as keyof typeof Ionicons.glyphMap)
-                }
-                size={22}
-                color={isFocused ? "#8DE175" : "rgba(255,255,255,0.5)"}
+                name={isFocused ? config.activeIcon : config.inactiveIcon}
+                size={20}
+                color={isFocused ? "#000000" : "rgba(0,0,0,0.7)"}
               />
               <Text
-                className={`text-[10px] font-poppins mt-0.5 ${
-                  isFocused ? "text-primary" : "text-white/50"
+                className={`mt-0.5 text-xs font-poppins-medium ${
+                  isFocused ? "text-black" : "text-black/70"
                 }`}
               >
                 {config.label}
@@ -78,7 +107,7 @@ function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
             </Pressable>
           );
         })}
-      </BlurView>
+      </View>
     </View>
   );
 }
@@ -86,14 +115,13 @@ function CustomTabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 export default function TabLayout() {
   return (
     <Tabs
+      initialRouteName="my-trip"
       tabBar={(props) => <CustomTabBar {...props} />}
       screenOptions={{ headerShown: false }}
     >
       <Tabs.Screen name="index" />
-      <Tabs.Screen name="trip-plans" />
+      <Tabs.Screen name="plan" />
       <Tabs.Screen name="my-trip" />
-      <Tabs.Screen name="favorites" />
-      <Tabs.Screen name="messages" />
     </Tabs>
   );
 }
