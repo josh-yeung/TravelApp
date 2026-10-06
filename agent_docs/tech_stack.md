@@ -1,7 +1,7 @@
 # Tech Stack & Architecture
 
 ## Core Technologies
-- **Frontend / Mobile:** React Native with Expo Router
+- **Frontend / Mobile:** React Native (0.86) with Expo SDK 57 + Expo Router
 - **Styling:** NativeWind (Tailwind CSS for React Native)
 - **Language:** TypeScript
 - **Backend / Database:** Supabase (PostgreSQL, Auth, Edge Functions)
