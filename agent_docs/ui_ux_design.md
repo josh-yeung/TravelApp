@@ -43,8 +43,9 @@
 ### 3. Profile (`profile.tsx`)
 - Stack screen (hides tab bar) opened from Trips.
 - Header: circular back / share / plus with `#C5C9AC` borders; centered “Profile” title.
-- Interactive MapLibre world map (`ProfileWorldMap`) with countries GeoJSON fill — forest green for visited ISO codes (mock list today; ready for future shading).
-- Metric cards: countries visited + % of world progress bar.
+- Interactive MapLibre world map (`ProfileWorldMap`) with countries GeoJSON fill — forest green for visited ISO codes from the in-memory visited store.
+- Plus opens **Add countries** (`add-countries.tsx`) modal: search, A–Z list (flag + name + toggle), muted rows for already-visited (still editable), Save replaces visited set (add/remove); Back/Exit discard draft.
+- Metric cards: countries visited + % of world progress bar (live from visited store).
 - User card: avatar, name/age, country, trips/saved stats.
 - Settings and Edit profile rows (UI stubs for now).
 

@@ -11,11 +11,9 @@ import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { ProfileWorldMap } from "@/components/profile-world-map";
-import {
-  MOCK_PROFILE,
-  VISITED_COUNTRY_COUNT,
-  WORLD_PERCENT,
-} from "@/constants/profile";
+import { MOCK_PROFILE } from "@/constants/profile";
+import { TOTAL_COUNTRIES_IN_CATALOG } from "@/lib/countries-catalog";
+import { useVisitedCountries } from "@/lib/visited-countries";
 
 const ICON_BACK = require("../assets/images/profile/back.svg") as ImageSourcePropType;
 const ICON_SHARE = require("../assets/images/profile/share.svg") as ImageSourcePropType;
@@ -116,6 +114,10 @@ function ActionRow({
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const visitedCountries = useVisitedCountries();
+  const visitedCount = visitedCountries.length;
+  const worldPercent =
+    Math.round((visitedCount / TOTAL_COUNTRIES_IN_CATALOG) * 1000) / 10;
 
   return (
     <View className="flex-1 bg-background" style={{ paddingTop: insets.top }}>
@@ -132,7 +134,11 @@ export default function ProfileScreen() {
           <CircleIconButton icon={ICON_SHARE} iconSize={20} />
         </View>
         <View className="mt-1.5 flex-row justify-end">
-          <CircleIconButton icon={ICON_PLUS} iconSize={20} />
+          <CircleIconButton
+            icon={ICON_PLUS}
+            iconSize={20}
+            onPress={() => router.push("/add-countries")}
+          />
         </View>
       </View>
 
@@ -154,10 +160,10 @@ export default function ProfileScreen() {
             <View className="pt-2">
               <View className="flex-row items-baseline gap-1">
                 <Text className="text-2xl font-poppins-bold tracking-tight text-[#12221b]">
-                  {VISITED_COUNTRY_COUNT}
+                  {visitedCount}
                 </Text>
                 <Text className="text-sm font-poppins-semibold text-[#9ca3af]">
-                  / {MOCK_PROFILE.totalCountries}
+                  / {TOTAL_COUNTRIES_IN_CATALOG}
                 </Text>
               </View>
               <Text className="mt-0.5 text-xs font-poppins-semibold text-[#1b3026]">
@@ -172,7 +178,7 @@ export default function ProfileScreen() {
           <MetricCard>
             <View className="gap-0.5 pt-2">
               <Text className="text-2xl font-poppins-bold tracking-tight text-[#12221b]">
-                {WORLD_PERCENT}%
+                {worldPercent}%
               </Text>
               <Text className="pb-1 text-xs font-poppins-semibold text-[#1b3026]">
                 of the world
@@ -180,7 +186,7 @@ export default function ProfileScreen() {
               <View className="h-1.5 w-full overflow-hidden rounded-pill bg-[#e5efe9]">
                 <View
                   className="h-full rounded-pill bg-forest"
-                  style={{ width: `${WORLD_PERCENT}%` }}
+                  style={{ width: `${worldPercent}%` }}
                 />
               </View>
             </View>

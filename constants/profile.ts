@@ -11,8 +11,8 @@ export const MOCK_PROFILE = {
 } as const;
 
 /**
- * ISO_A2 codes shaded on the profile world map.
- * Swap this list later for persisted user travel history.
+ * Seed ISO codes for the in-memory visited store (`lib/visited-countries.ts`).
+ * Runtime counts / map shading read from that store after the user Saves.
  */
 export const MOCK_VISITED_COUNTRIES = [
   "CA",
@@ -36,8 +36,3 @@ export const MOCK_VISITED_COUNTRIES = [
 ] as const;
 
 export type VisitedCountryCode = (typeof MOCK_VISITED_COUNTRIES)[number];
-
-export const VISITED_COUNTRY_COUNT = MOCK_VISITED_COUNTRIES.length;
-
-export const WORLD_PERCENT =
-  Math.round((VISITED_COUNTRY_COUNT / MOCK_PROFILE.totalCountries) * 1000) / 10;

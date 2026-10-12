@@ -9,19 +9,14 @@ import type {
   ExpressionSpecification,
   StyleSpecification,
 } from "@maplibre/maplibre-gl-style-spec";
-import type { Feature, FeatureCollection } from "geojson";
+import type { FeatureCollection } from "geojson";
 
 import countriesGeoJSON from "@/assets/geo/countries.json";
-import { MOCK_VISITED_COUNTRIES } from "@/constants/profile";
+import { normalizeCountriesGeoJSON } from "@/lib/countries-catalog";
+import { useVisitedCountries } from "@/lib/visited-countries";
 
 const FOREST = "#44655A";
 const UNVISITED = "#d5ddd8";
-
-/** Natural Earth sometimes falls back to ADM0_A3 (3-letter) when ISO_A2 is missing. */
-const ISO_ALIASES: Record<string, string> = {
-  FRA: "FR",
-  NOR: "NO",
-};
 
 /**
  * Minimal light style — demotiles already owns a `countries-fill` layer and paints
@@ -41,38 +36,20 @@ const MAP_STYLE: StyleSpecification = {
   ],
 };
 
-function normalizeCountries(raw: FeatureCollection): FeatureCollection {
-  return {
-    type: "FeatureCollection",
-    features: raw.features.map((feature: Feature) => {
-      const props = feature.properties ?? {};
-      const rawIso = typeof props.iso === "string" ? props.iso : "";
-      const iso = ISO_ALIASES[rawIso] ?? rawIso;
-
-      return {
-        ...feature,
-        id: iso || feature.id,
-        properties: {
-          ...props,
-          iso,
-        },
-      };
-    }),
-  };
-}
-
-const countriesData = normalizeCountries(
+const countriesData = normalizeCountriesGeoJSON(
   countriesGeoJSON as FeatureCollection,
 );
 
-function buildVisitedFillColor(): ExpressionSpecification {
+function buildVisitedFillColor(
+  visitedCountries: string[],
+): string | ExpressionSpecification {
+  if (visitedCountries.length === 0) {
+    return UNVISITED;
+  }
+
   return [
     "case",
-    [
-      "in",
-      ["get", "iso"],
-      ["literal", [...MOCK_VISITED_COUNTRIES]],
-    ],
+    ["in", ["get", "iso"], ["literal", visitedCountries]],
     FOREST,
     UNVISITED,
   ];
@@ -84,9 +61,11 @@ interface ProfileWorldMapProps {
 
 /**
  * Interactive MapLibre world map with a countries fill layer.
- * Visited ISO codes use forest green; the same source can drive future shading UX.
+ * Visited ISO codes use forest green from the shared visited-countries store.
  */
 export function ProfileWorldMap({ height = 200 }: ProfileWorldMapProps) {
+  const visitedCountries = useVisitedCountries();
+
   return (
     <View
       className="w-full overflow-hidden rounded-2xl"
@@ -112,7 +91,7 @@ export function ProfileWorldMap({ height = 200 }: ProfileWorldMapProps) {
             id="visited-countries-fill"
             type="fill"
             paint={{
-              "fill-color": buildVisitedFillColor(),
+              "fill-color": buildVisitedFillColor(visitedCountries),
               "fill-opacity": 1,
             }}
           />

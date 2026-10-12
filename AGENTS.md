@@ -32,7 +32,7 @@
 ## Current State (Update This!)
 **Last Updated:** October 9, 2026
 **Working On:** Phase 2 — Two-Brain System
-**Recently Completed:** Profile screen (Figma) with MapLibre interactive world map + country fill layer; opened from Trips person button
+**Recently Completed:** Profile Add Countries modal — searchable list with toggles; Save updates visited store + map shading (add/remove)
 **Blocked By:** MapLibre needs a custom Expo dev client (not Expo Go); Supabase project credentials if not already in `.env`
 
 ## Roadmap

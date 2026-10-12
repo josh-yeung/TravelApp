@@ -45,6 +45,10 @@ export default function RootLayout() {
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="profile" />
+        <Stack.Screen
+          name="add-countries"
+          options={{ presentation: "modal" }}
+        />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
