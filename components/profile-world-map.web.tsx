@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 interface ProfileWorldMapProps {
   height?: number;
@@ -8,8 +8,12 @@ interface ProfileWorldMapProps {
 export function ProfileWorldMap({ height = 200 }: ProfileWorldMapProps) {
   return (
     <View
-      className="w-full overflow-hidden rounded-2xl bg-[#e5efe9]"
+      className="w-full items-center justify-center overflow-hidden rounded-2xl bg-[#e5efe9] px-4"
       style={{ height }}
-    />
+    >
+      <Text className="text-center text-sm font-poppins-medium text-forest">
+        Map is available on iOS/Android Dev Client
+      </Text>
+    </View>
   );
 }

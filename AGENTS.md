@@ -33,7 +33,7 @@
 **Last Updated:** October 12, 2026
 **Working On:** Phase 2 — Two-Brain System
 **Recently Completed:** Trip day map + bottom sheet — tap in-range calendar day opens date strip/itinerary over MapLibre; pull sheet down to reveal map
-**Blocked By:** MapLibre needs a custom Expo dev client (not Expo Go); Supabase project credentials if not already in `.env`
+**Blocked By:** MapLibre needs a custom Expo dev client (not Expo Go) — Expo Go shows map placeholders instead of crashing; Supabase project credentials if not already in `.env`
 
 ## Roadmap
 ### Phase 1: Foundation
