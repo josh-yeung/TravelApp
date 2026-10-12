@@ -40,16 +40,17 @@
 - Frosted white trip cards (`rounded-[32px]`) with 96×96 destination image, destination name, forest date badge + lime accent text, and ellipsis menu.
 - Tapping a trip card opens the Trip Calendar (`/trip/[id]`).
 - White "Plan Manually" pill CTA that opens the onboarding wizard.
+- Top-left bookmark opens Bookings hub (`/bookings`).
 - Top-right person button navigates to Profile (`/profile`).
 
 ### 2b. Trip Calendar (`trip/[id].tsx`)
 - Stack screen opened from a My Trips card; hides the tab bar.
-- **Month mode:** circular back / filter (`#C5C9AC` borders; filter stub). Vertically scrolling months (Sunday-first). Trip days highlighted olive (`#536600`); tap an in-range day to open day mode. Months span the trip range; single-month trips also show the following month.
+- **Month mode:** circular back / map-pin (`#C5C9AC` borders). Vertically scrolling months (Sunday-first). Trip days highlighted olive (`#536600`); tap an in-range day to open day mode. Months span the trip range; single-month trips also show the following month. Map-pin opens trip Bookings (`/bookings/[tripId]`).
 - **Day mode:** full-bleed MapLibre city map under a `@gorhom/bottom-sheet` panel (`#F7FAFB`, top radius 40, `#c5c9ac` drag handle).
   - Snap points: collapsed (~121px — date strip only) and expanded (~85% — strip + day header + spot timeline).
   - Date strip: trip days only; selected day olive circle. Header: large date title, forest destination, gray “Xkm • N spots” pill.
   - Spot cards: frosted white cards, lime `#d4ff00` numbered timeline rings, transit pill + book/nav action circles (visual stubs).
-  - Back from day mode returns to month mode; back from month mode returns to My Trips.
+  - Map-pin opens trip Bookings; back from day mode returns to month mode; back from month mode returns to My Trips.
 
 ### 3. Profile (`profile.tsx`)
 - Stack screen (hides tab bar) opened from Trips.
@@ -71,9 +72,15 @@
 - **Trip day map (`TripDayMap`):** Full-bleed demotiles style; camera fits day spot bounds (or city center). Circle markers — olive fill + lime halo/stroke.
 - **Location Detail Overlay (upcoming):** When a user taps a pin, display details in a floating `<BlurView>` matching itinerary action bars.
 
-### 6. The Bookings Hub (bookings.tsx)
-- **Layout:** Clean vertical lists with generous spacing.
-- **Cards:** Heavily rounded white cards (`#FFFFFF`) on an off-white background (`#F8F9FA`) to create a subtle separation without using heavy drop shadows.
-- **Badging:** Clear, pill-shaped tags to indicate status. 
-  - "Booked": Subtle green background with dark green text.
-  - "Suggested": Subtle gray background with dark gray text.
+### 6. Bookings Hub (`bookings/index.tsx`)
+- Opened from My Trips bookmark; stack screen with bookmark + profile header buttons.
+- Forest **Bookings** title; sections Flights / Stays / Cars with lime `#d4ff00` `+` stubs.
+- Flight cards: frosted white `rounded-[32px]`, airport codes, plane path + olive duration, schedule row.
+- Empty Stays/Cars: dashed `#c5c9ac` placeholders with CTA text (stubs).
+- Tapping the Paris flight card opens trip Bookings.
+
+### 6b. Trip Bookings (`bookings/[tripId].tsx`)
+- Opened from trip calendar map-pin or hub flight card.
+- Header: back + map-pin (map-pin returns to `/trip/[id]`).
+- Trip title, calendar date range, hero image with bottom gradient.
+- Forest **Bookings** heading; Flights cards + Stays/Cars empty states (Stays CTA varies by trip; Cars uses “Find a car rental”).

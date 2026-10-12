@@ -48,6 +48,8 @@ export default function RootLayout() {
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="profile" />
           <Stack.Screen name="trip/[id]" />
+          <Stack.Screen name="bookings/index" />
+          <Stack.Screen name="bookings/[tripId]" />
           <Stack.Screen
             name="add-countries"
             options={{ presentation: "modal" }}

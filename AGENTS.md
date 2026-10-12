@@ -32,7 +32,7 @@
 ## Current State (Update This!)
 **Last Updated:** October 12, 2026
 **Working On:** Phase 2 — Two-Brain System
-**Recently Completed:** Trip day map + bottom sheet — tap in-range calendar day opens date strip/itinerary over MapLibre; pull sheet down to reveal map
+**Recently Completed:** Bookings hub + trip bookings screens — My Trips bookmark → hub; trip calendar map-pin → trip bookings
 **Blocked By:** MapLibre needs a custom Expo dev client (not Expo Go) — Expo Go shows map placeholders instead of crashing; Supabase project credentials if not already in `.env`
 
 ## Roadmap
@@ -47,7 +47,7 @@
 - [ ] Build Interactive Timeline (Drag-and-drop cards)
 - [x] Profile screen with MapLibre world map (country shading foundation)
 - [x] Integrate MapLibre UI for itinerary visual routing (trip day map + pins; routing polish later)
-- [ ] Build Integrated Bookings Hub
+- [x] Build Integrated Bookings Hub (mock UI; provider deep links later)
 
 ## What NOT To Do
 - Do NOT expose Google or Gemini API keys in the mobile frontend (use Supabase Edge Functions).

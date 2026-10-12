@@ -112,6 +112,13 @@ export function formatDayTitle(isoDate: string): string {
   return `${MONTH_NAMES[date.getMonth()]} ${date.getDate()}`;
 }
 
+/** e.g. "April 5, 2026 - April 12, 2026" */
+export function formatTripDateRange(startIso: string, endIso: string): string {
+  const start = parseIsoDate(startIso);
+  const end = parseIsoDate(endIso);
+  return `${MONTH_NAMES[start.getMonth()]} ${start.getDate()}, ${start.getFullYear()} - ${MONTH_NAMES[end.getMonth()]} ${end.getDate()}, ${end.getFullYear()}`;
+}
+
 export function weekdayLetter(isoDate: string): string {
   return WEEKDAY_LETTERS[parseIsoDate(isoDate).getDay()];
 }

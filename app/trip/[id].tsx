@@ -24,7 +24,7 @@ import {
 } from "@/lib/calendar";
 
 const ICON_BACK = require("../../assets/images/calendar/back.svg") as ImageSourcePropType;
-const ICON_FILTER = require("../../assets/images/calendar/filter.svg") as ImageSourcePropType;
+const ICON_MAP_PIN = require("../../assets/images/bookings/map-pin.svg") as ImageSourcePropType;
 
 type ScreenMode = "month" | "day";
 
@@ -109,6 +109,16 @@ export default function TripCalendarScreen() {
     router.back();
   }, [mode, router]);
 
+  const openBookings = useCallback(() => {
+    if (!trip) {
+      return;
+    }
+    router.push({
+      pathname: "/bookings/[tripId]",
+      params: { tripId: trip.id },
+    });
+  }, [router, trip]);
+
   if (!trip) {
     return null;
   }
@@ -127,9 +137,10 @@ export default function TripCalendarScreen() {
             onPress={handleBack}
           />
           <CircleIconButton
-            icon={ICON_FILTER}
-            iconWidth={20}
-            iconHeight={15}
+            icon={ICON_MAP_PIN}
+            iconWidth={16}
+            iconHeight={20}
+            onPress={openBookings}
           />
         </View>
 
@@ -172,9 +183,10 @@ export default function TripCalendarScreen() {
           onPress={handleBack}
         />
         <CircleIconButton
-          icon={ICON_FILTER}
-          iconWidth={20}
-          iconHeight={15}
+          icon={ICON_MAP_PIN}
+          iconWidth={16}
+          iconHeight={20}
+          onPress={openBookings}
         />
       </View>
 
