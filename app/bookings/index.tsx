@@ -39,7 +39,7 @@ export default function BookingsHubScreen() {
         className="flex-1"
         contentContainerStyle={{
           paddingHorizontal: 20,
-          paddingBottom: insets.bottom + 48,
+          paddingBottom: insets.bottom + 80,
           gap: 24,
         }}
         showsVerticalScrollIndicator={false}
