@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 
 import {
   isDateInRange,
@@ -12,6 +12,7 @@ interface TripCalendarMonthProps {
   month: CalendarMonth;
   startDate: string;
   endDate: string;
+  onSelectDate?: (isoDate: string) => void;
 }
 
 function chunkWeeks(days: CalendarDay[]): CalendarDay[][] {
@@ -26,6 +27,7 @@ export function TripCalendarMonth({
   month,
   startDate,
   endDate,
+  onSelectDate,
 }: TripCalendarMonthProps) {
   const weeks = chunkWeeks(month.days);
 
@@ -67,28 +69,40 @@ export function TripCalendarMonth({
                 );
               }
 
-              const selected =
+              const inRange =
                 cell.inMonth &&
                 isDateInRange(cell.isoDate, startDate, endDate);
 
-              return (
-                <View
-                  key={cell.isoDate}
-                  className={`h-12 flex-1 items-center justify-center rounded-full ${
-                    selected ? "bg-olive" : ""
-                  }`}
-                >
-                  <Text
-                    className={`text-base text-center leading-6 ${
-                      selected
-                        ? "font-poppins-semibold text-white"
-                        : cell.inMonth
-                          ? "font-poppins-semibold text-[#444932]"
-                          : "font-poppins text-[#444932]"
-                    }`}
+              const cellClass = `h-12 w-full items-center justify-center rounded-full ${
+                inRange ? "bg-olive" : ""
+              }`;
+              const textClass = `text-base text-center leading-6 ${
+                inRange
+                  ? "font-poppins-semibold text-white"
+                  : cell.inMonth
+                    ? "font-poppins-semibold text-[#444932]"
+                    : "font-poppins text-[#444932]"
+              }`;
+
+              if (inRange && onSelectDate) {
+                return (
+                  <Pressable
+                    key={cell.isoDate}
+                    className="h-12 flex-1"
+                    onPress={() => onSelectDate(cell.isoDate)}
                   >
-                    {cell.day}
-                  </Text>
+                    <View className={cellClass}>
+                      <Text className={textClass}>{cell.day}</Text>
+                    </View>
+                  </Pressable>
+                );
+              }
+
+              return (
+                <View key={cell.isoDate} className="h-12 flex-1">
+                  <View className={cellClass}>
+                    <Text className={textClass}>{cell.day}</Text>
+                  </View>
                 </View>
               );
             })}

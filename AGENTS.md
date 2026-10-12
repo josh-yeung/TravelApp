@@ -32,7 +32,7 @@
 ## Current State (Update This!)
 **Last Updated:** October 12, 2026
 **Working On:** Phase 2 — Two-Brain System
-**Recently Completed:** Trip calendar screen — tap Paris/Rome/Tokyo opens Figma calendar with trip date-range highlights
+**Recently Completed:** Trip day map + bottom sheet — tap in-range calendar day opens date strip/itinerary over MapLibre; pull sheet down to reveal map
 **Blocked By:** MapLibre needs a custom Expo dev client (not Expo Go); Supabase project credentials if not already in `.env`
 
 ## Roadmap
@@ -46,7 +46,7 @@
 - [ ] Implement "Two-Brain" System (Gemini generation + Google Places validation via Edge Functions)
 - [ ] Build Interactive Timeline (Drag-and-drop cards)
 - [x] Profile screen with MapLibre world map (country shading foundation)
-- [ ] Integrate MapLibre UI for itinerary visual routing
+- [x] Integrate MapLibre UI for itinerary visual routing (trip day map + pins; routing polish later)
 - [ ] Build Integrated Bookings Hub
 
 ## What NOT To Do

@@ -89,6 +89,33 @@ export function buildMonthGrid(year: number, month: number): CalendarDay[] {
   return cells;
 }
 
+const WEEKDAY_LETTERS = ["S", "M", "T", "W", "T", "F", "S"] as const;
+
+export function eachIsoDateInRange(
+  startIso: string,
+  endIso: string
+): string[] {
+  const dates: string[] = [];
+  const cursor = parseIsoDate(startIso);
+  const end = parseIsoDate(endIso);
+
+  while (cursor <= end) {
+    dates.push(toIsoDate(cursor));
+    cursor.setDate(cursor.getDate() + 1);
+  }
+
+  return dates;
+}
+
+export function formatDayTitle(isoDate: string): string {
+  const date = parseIsoDate(isoDate);
+  return `${MONTH_NAMES[date.getMonth()]} ${date.getDate()}`;
+}
+
+export function weekdayLetter(isoDate: string): string {
+  return WEEKDAY_LETTERS[parseIsoDate(isoDate).getDay()];
+}
+
 export function monthsForTrip(
   startIso: string,
   endIso: string
