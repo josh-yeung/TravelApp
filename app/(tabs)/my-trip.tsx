@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
+import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { TripCard } from "@/components/trip-card";
@@ -29,6 +30,7 @@ const PLANNED_TRIPS = [
 
 export default function MyTripsScreen() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<TripTab>("planned");
 
   const trips = activeTab === "planned" ? PLANNED_TRIPS : [];
@@ -44,7 +46,10 @@ export default function MyTripsScreen() {
           <Pressable className="h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white">
             <Ionicons name="bookmark-outline" size={20} color="#181C1D" />
           </Pressable>
-          <Pressable className="h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white">
+          <Pressable
+            onPress={() => router.push("/profile")}
+            className="h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white"
+          >
             <Ionicons name="person-outline" size={20} color="#181C1D" />
           </Pressable>
         </View>

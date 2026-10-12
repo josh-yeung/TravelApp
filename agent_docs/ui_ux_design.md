@@ -38,18 +38,28 @@
 - Large "My Trips" title with Planned / Past Trips toggle.
 - Frosted white trip cards (`rounded-[32px]`) with 96×96 destination image, destination name, forest date badge + lime accent text, and ellipsis menu.
 - White "Plan Manually" pill CTA that opens the onboarding wizard.
+- Top-right person button navigates to Profile (`/profile`).
 
-### 3. The Itinerary Timeline & Details (itinerary.tsx)
+### 3. Profile (`profile.tsx`)
+- Stack screen (hides tab bar) opened from Trips.
+- Header: circular back / share / plus with `#C5C9AC` borders; centered “Profile” title.
+- Interactive MapLibre world map (`ProfileWorldMap`) with countries GeoJSON fill — forest green for visited ISO codes (mock list today; ready for future shading).
+- Metric cards: countries visited + % of world progress bar.
+- User card: avatar, name/age, country, trips/saved stats.
+- Settings and Edit profile rows (UI stubs for now).
+
+### 4. The Itinerary Timeline & Details (itinerary.tsx)
 - Edge-to-edge header images with a subtle dark gradient overlay at the bottom so overlaid white text remains readable.
 - Floating back buttons (circular, translucent dark background, white line icons).
 - **Action Bar:** A floating dark glassmorphic bar at the bottom containing the main action (e.g., "Start your trip").
 
-### 4. The Interactive Map (MapView.tsx)
-- **Base Style:** Use a clean, minimal Mapbox style (e.g., Mapbox Light or a custom minimal outdoors style) to avoid visual clutter.
-- **Markers:** Custom markers using the Primary Lime Green. Selected markers should slightly scale up.
-- **Location Detail Overlay:** When a user taps a pin, display the location details in a floating `<BlurView>` (frosted glass card) at the bottom of the screen, matching the design of the itinerary action bars.
+### 5. The Interactive Map (MapLibre)
+- **Base Style:** Light MapLibre style (demo tiles for MVP; swap to a production tile provider later).
+- **Profile world map:** Pan/zoom enabled; country fills via GeoJSON `Layer` typed `fill`, keyed by ISO code.
+- **Itinerary markers (upcoming):** Custom markers using Primary Lime Green; selected markers slightly scale up.
+- **Location Detail Overlay:** When a user taps a pin, display details in a floating `<BlurView>` matching itinerary action bars.
 
-### 5. The Bookings Hub (bookings.tsx)
+### 6. The Bookings Hub (bookings.tsx)
 - **Layout:** Clean vertical lists with generous spacing.
 - **Cards:** Heavily rounded white cards (`#FFFFFF`) on an off-white background (`#F8F9FA`) to create a subtle separation without using heavy drop shadows.
 - **Badging:** Clear, pill-shaped tags to indicate status. 

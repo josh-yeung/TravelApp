@@ -3,7 +3,7 @@
 ## Project Overview
 **App:** [App Name]
 **Goal:** A one-stop-shop travel app that generates logistically sound, day-by-day itineraries with interactive maps and direct booking links.
-**Stack:** React Native (Expo), TypeScript, Supabase, Gemini API, Google Places API, Mapbox.
+**Stack:** React Native (Expo), TypeScript, Supabase, Gemini API, Google Places API, MapLibre.
 **Current Phase:** Phase 2 — Core Features
 
 ## How I Should Think (Level C: Learning & Building)
@@ -30,10 +30,10 @@
 - `agent_docs/testing.md`: Verification strategy.
 
 ## Current State (Update This!)
-**Last Updated:** March 20, 2026
+**Last Updated:** October 9, 2026
 **Working On:** Phase 2 — Two-Brain System
-**Recently Completed:** Smart Onboarding Prompt — Home screen redesigned, 5-tab glassmorphic nav, 4-step wizard (destination, dates, budget, vibes) with review screen
-**Blocked By:** User needs to create Supabase project at supabase.com and paste URL + anon key into .env
+**Recently Completed:** Profile screen (Figma) with MapLibre interactive world map + country fill layer; opened from Trips person button
+**Blocked By:** MapLibre needs a custom Expo dev client (not Expo Go); Supabase project credentials if not already in `.env`
 
 ## Roadmap
 ### Phase 1: Foundation
@@ -45,7 +45,8 @@
 - [x] Build Smart Onboarding Prompt (Destination, dates, budget, vibes)
 - [ ] Implement "Two-Brain" System (Gemini generation + Google Places validation via Edge Functions)
 - [ ] Build Interactive Timeline (Drag-and-drop cards)
-- [ ] Integrate Mapbox UI for visual routing
+- [x] Profile screen with MapLibre world map (country shading foundation)
+- [ ] Integrate MapLibre UI for itinerary visual routing
 - [ ] Build Integrated Bookings Hub
 
 ## What NOT To Do

@@ -7,11 +7,12 @@
 - **Backend / Database:** Supabase (PostgreSQL, Auth, Edge Functions)
 - **AI / Logic:** Google Gemini 1.5 Flash (via Edge Functions)
 - **Validation:** Google Places API (via Edge Functions)
-- **Maps:** Mapbox Maps SDK for React Native
+- **Maps:** MapLibre React Native (`@maplibre/maplibre-react-native`) — requires a custom dev client (not Expo Go)
 
 ## Project Structure
-app/                  (Expo Router screens: index, itinerary, bookings)
-components/           (Reusable UI: MapView, DayCard, BookingLink)
+app/                  (Expo Router screens: index, plan, my-trip, profile)
+components/           (Reusable UI: TripCard, ProfileWorldMap)
+assets/geo/           (Country boundary GeoJSON for profile map shading)
 lib/                  (Helpers: supabase client, api callers)
 supabase/functions/   (Edge Functions: generate-trip)
 app.json              (Expo config)
