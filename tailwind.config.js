@@ -7,7 +7,9 @@ module.exports = {
       colors: {
         primary: "#8DE175",
         forest: "#44655A",
+        olive: "#536600",
         "lime-accent": "#B0D500",
+
         background: "#F7FAFB",
         surface: "#F8F9FA",
         heading: "#1A1A1A",

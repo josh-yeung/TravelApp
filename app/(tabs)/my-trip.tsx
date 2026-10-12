@@ -4,29 +4,9 @@ import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { TripCard } from "@/components/trip-card";
+import { PLANNED_TRIPS } from "@/constants/trips";
 
 type TripTab = "planned" | "past";
-
-const PLANNED_TRIPS = [
-  {
-    id: "paris",
-    title: "Paris",
-    dateRange: "Apr 5 - 12",
-    image: require("../../assets/images/trips/paris.png"),
-  },
-  {
-    id: "rome",
-    title: "Rome",
-    dateRange: "May 10 - 15",
-    image: require("../../assets/images/trips/rome.png"),
-  },
-  {
-    id: "tokyo",
-    title: "Tokyo",
-    dateRange: "Jun 2 - 8",
-    image: require("../../assets/images/trips/tokyo.png"),
-  },
-];
 
 export default function MyTripsScreen() {
   const insets = useSafeAreaInsets();
@@ -92,6 +72,12 @@ export default function MyTripsScreen() {
                   title={trip.title}
                   dateRange={trip.dateRange}
                   image={trip.image}
+                  onPress={() =>
+                    router.push({
+                      pathname: "/trip/[id]",
+                      params: { id: trip.id },
+                    })
+                  }
                 />
               ))
             )}

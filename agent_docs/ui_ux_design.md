@@ -11,6 +11,7 @@
 - **Backgrounds:** Soft off-white (`#F7FAFB`) for main app backgrounds; surface gray (`#F8F9FA`) for secondary panels.
 - **Primary Accent:** Vibrant Lime/Neon Green (`#8DE175`). Used sparingly for Explore active states and legacy CTAs.
 - **Forest:** Deep green (`#44655A`). Used for My Trips date badges, "Planned" labels, and the active Trips tab pill.
+- **Olive:** Dark olive (`#536600`). Used for trip calendar selected-day circles and matching icon fills.
 - **Lime Accent:** Chartreuse (`#B0D500`). Used for date-badge text/icons on forest backgrounds.
 - **Typography Colors:**
   - Primary Headers/Titles: Very Dark Gray/Black (`#1A1A1A`).
@@ -37,8 +38,16 @@
 ### 2. My Trips (`my-trip.tsx`)
 - Large "My Trips" title with Planned / Past Trips toggle.
 - Frosted white trip cards (`rounded-[32px]`) with 96×96 destination image, destination name, forest date badge + lime accent text, and ellipsis menu.
+- Tapping a trip card opens the Trip Calendar (`/trip/[id]`).
 - White "Plan Manually" pill CTA that opens the onboarding wizard.
 - Top-right person button navigates to Profile (`/profile`).
+
+### 2b. Trip Calendar (`trip/[id].tsx`)
+- Stack screen opened from a My Trips card; hides the tab bar.
+- Header: circular back / filter buttons with `#C5C9AC` borders (filter is a visual stub).
+- Vertically scrolling months (Sunday-first grids). Month name bold + year regular (`#181C1D`).
+- Trip days highlighted as olive (`#536600`) circles with white text; trailing next-month days use regular weight.
+- Months span the trip range; if the trip is a single month, the following month is also shown.
 
 ### 3. Profile (`profile.tsx`)
 - Stack screen (hides tab bar) opened from Trips.
