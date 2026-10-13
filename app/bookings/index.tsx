@@ -6,11 +6,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BookingEmptyState } from "@/components/booking-empty-state";
 import { BookingFlightCard } from "@/components/booking-flight-card";
 import { BookingSectionHeader } from "@/components/booking-section-header";
+import { BookingStaysSearchCard } from "@/components/booking-stays-search-card";
 import { getHubFlights } from "@/constants/bookings";
 
 const ICON_BOOKMARK = require("../../assets/images/bookings/bookmark-btn.svg") as ImageSourcePropType;
 const ICON_PERSON = require("../../assets/images/bookings/person-btn.svg") as ImageSourcePropType;
-const ICON_BED = require("../../assets/images/bookings/bed.svg") as ImageSourcePropType;
 const ICON_CAR = require("../../assets/images/bookings/car.svg") as ImageSourcePropType;
 
 export default function BookingsHubScreen() {
@@ -66,13 +66,7 @@ export default function BookingsHubScreen() {
 
         <View className="w-full gap-4 pt-6">
           <BookingSectionHeader title="Stays" />
-          <BookingEmptyState
-            icon={ICON_BED}
-            iconWidth={37}
-            iconHeight={33}
-            message="No stays booked yet"
-            ctaLabel="Find a place to stay"
-          />
+          <BookingStaysSearchCard />
         </View>
 
         <View className="w-full gap-4 pt-6">

@@ -76,11 +76,12 @@
 - Opened from My Trips bookmark; stack screen with bookmark + profile header buttons.
 - Forest **Bookings** title; sections Flights / Stays / Cars with lime `#d4ff00` `+` stubs.
 - Flight cards: frosted white `rounded-[32px]`, airport codes, plane path + olive duration, schedule row.
-- Empty Stays/Cars: dashed `#c5c9ac` placeholders with CTA text (stubs).
+- Stays: frosted search card (`rounded-[48px]`) with Where/When/Who pills, lime Search CTA, and Deals From rows (Expedia / Tripadvisor / Airbnb) — stubs.
+- Cars: dashed `#c5c9ac` empty placeholder with CTA text (stub).
 - Tapping the Paris flight card opens trip Bookings.
 
 ### 6b. Trip Bookings (`bookings/[tripId].tsx`)
 - Opened from trip calendar map-pin or hub flight card.
 - Header: back + map-pin (map-pin returns to `/trip/[id]`).
 - Trip title, calendar date range, hero image with bottom gradient.
-- Forest **Bookings** heading; Flights cards + Stays/Cars empty states (Stays CTA varies by trip; Cars uses “Find a car rental”).
+- Forest **Bookings** heading; Flights cards + Stays search card (same as hub) + Cars empty state (“Find a car rental”).

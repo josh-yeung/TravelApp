@@ -14,6 +14,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BookingEmptyState } from "@/components/booking-empty-state";
 import { BookingFlightCard } from "@/components/booking-flight-card";
 import { BookingSectionHeader } from "@/components/booking-section-header";
+import { BookingStaysSearchCard } from "@/components/booking-stays-search-card";
 import { getTripBookings } from "@/constants/bookings";
 import { getTripById } from "@/constants/trips";
 import { formatTripDateRange } from "@/lib/calendar";
@@ -21,7 +22,6 @@ import { formatTripDateRange } from "@/lib/calendar";
 const ICON_BACK = require("../../assets/images/bookings/back.svg") as ImageSourcePropType;
 const ICON_MAP_PIN = require("../../assets/images/bookings/map-pin.svg") as ImageSourcePropType;
 const ICON_CALENDAR = require("../../assets/images/bookings/calendar-sm.svg") as ImageSourcePropType;
-const ICON_BED = require("../../assets/images/bookings/bed.svg") as ImageSourcePropType;
 const ICON_CAR = require("../../assets/images/bookings/car.svg") as ImageSourcePropType;
 
 function CircleIconButton({
@@ -163,13 +163,7 @@ export default function TripBookingsScreen() {
 
           <View className="w-full gap-4 pt-6">
             <BookingSectionHeader title="Stays" />
-            <BookingEmptyState
-              icon={ICON_BED}
-              iconWidth={37}
-              iconHeight={33}
-              message="No stays booked yet"
-              ctaLabel={bookings.staysCta}
-            />
+            <BookingStaysSearchCard />
           </View>
 
           <View className="w-full gap-4 pt-6">
