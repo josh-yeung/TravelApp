@@ -45,7 +45,17 @@
 - Nested under Plan tab (floating tab dock stays visible). Progress: WHEN olive; circular **back** returns to Where.
 - Large **When?** title + vertical month calendars (April 2026 + 11 months). Tap to set range (start → end; third tap resets).
 - Selected days: olive filled circles + white numerals.
-- Floating olive CTA when range complete: **“April 2 – April 9 →”** style label (Next stub until WHAT).
+- Floating olive CTA when range complete: **“April 2 – April 9 →”** style label → navigates to What (`/plan/what`) with destinations + date range.
+
+### 1d. Plan — What? (`(tabs)/plan/what.tsx`)
+- Nested under Plan tab (floating tab dock stays). Progress: WHAT olive; circular **back** returns to When.
+- Large **What?** title; featured white **Saved** card (bookmark + forest label) → `/plan/what-saved`.
+- Activity rows: Landmarks / Restaurants / Nightlife / Nature / Shopping — mint icon circle, label, chevron (stubs).
+- Floating olive **Surprise Me** + wand CTA (stub until HOW).
+
+### 1e. Plan — What Saved (`(tabs)/plan/what-saved.tsx`)
+- Same WHAT progress + back. Active mint `#edf8f4` Saved pill; search filters mock saved places.
+- Section **SAVED** + place cards (thumb, name, city) — Louvre, Eiffel Tower, Notre Dame, Arc de Triomphe stubs.
 
 ### 2. My Trips (`my-trip.tsx`)
 - Large "My Trips" title with Planned / Past Trips toggle.

@@ -5,6 +5,8 @@ export default function PlanStackLayout() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
       <Stack.Screen name="when" />
+      <Stack.Screen name="what" />
+      <Stack.Screen name="what-saved" />
     </Stack>
   );
 }

@@ -24,8 +24,7 @@ const PLAN_MONTHS = monthsFrom(2026, 3, 12);
 export default function PlanWhenScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  /** Carried from Where for the WHAT step later. */
-  const { destinations: _destinations } = useLocalSearchParams<{
+  const { destinations } = useLocalSearchParams<{
     destinations?: string;
   }>();
 
@@ -111,7 +110,15 @@ export default function PlanWhenScreen() {
                 elevation: 4,
               }}
               onPress={() => {
-                // Stub until WHAT step exists
+                router.push({
+                  pathname: "/plan/what",
+                  params: {
+                    destinations:
+                      typeof destinations === "string" ? destinations : "",
+                    startDate: rangeStart,
+                    endDate: rangeEnd,
+                  },
+                });
               }}
             >
               <Text className="text-sm font-poppins-semibold text-white tracking-[0.7px] leading-5">
