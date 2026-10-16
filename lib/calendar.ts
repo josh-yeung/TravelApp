@@ -119,6 +119,36 @@ export function formatTripDateRange(startIso: string, endIso: string): string {
   return `${MONTH_NAMES[start.getMonth()]} ${start.getDate()}, ${start.getFullYear()} - ${MONTH_NAMES[end.getMonth()]} ${end.getDate()}, ${end.getFullYear()}`;
 }
 
+/** e.g. "April 2 – April 9" (Plan When CTA). */
+export function formatPlanDateRange(startIso: string, endIso: string): string {
+  const start = parseIsoDate(startIso);
+  const end = parseIsoDate(endIso);
+  return `${MONTH_NAMES[start.getMonth()]} ${start.getDate()} – ${MONTH_NAMES[end.getMonth()]} ${end.getDate()}`;
+}
+
+/** Consecutive months starting at year/month (0-indexed), count inclusive. */
+export function monthsFrom(year: number, month: number, count: number): CalendarMonth[] {
+  const months: CalendarMonth[] = [];
+  let y = year;
+  let m = month;
+
+  for (let i = 0; i < count; i++) {
+    months.push({
+      year: y,
+      month: m,
+      label: MONTH_NAMES[m],
+      days: buildMonthGrid(y, m),
+    });
+    m += 1;
+    if (m > 11) {
+      m = 0;
+      y += 1;
+    }
+  }
+
+  return months;
+}
+
 export function weekdayLetter(isoDate: string): string {
   return WEEKDAY_LETTERS[parseIsoDate(isoDate).getDay()];
 }

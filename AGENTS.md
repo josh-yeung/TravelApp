@@ -32,7 +32,7 @@
 ## Current State (Update This!)
 **Last Updated:** October 15, 2026
 **Working On:** Phase 2 — Two-Brain System
-**Recently Completed:** Plan tab Where? screen — Trending/Saved swipe, multi-select destinations, Selected CTA stub
+**Recently Completed:** Plan When? screen — date range calendar; Where CTA navigates with destination params
 **Blocked By:** MapLibre needs a custom Expo dev client (not Expo Go) — Expo Go shows map placeholders instead of crashing; Supabase project credentials if not already in `.env`
 
 ## Roadmap

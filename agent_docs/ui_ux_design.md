@@ -35,11 +35,17 @@
 - **Category Chips:** Pill-shaped horizontal scroll. Active chip has a white background, dark border, and a Lime Green icon.
 - **Bottom Navigation:** 3-tab light floating dock — Explore / Plan / Trips. White translucent pill, thin black border; active tab uses a forest-green pill behind the icon.
 
-### 1b. Plan — Where? (`plan.tsx`)
+### 1b. Plan — Where? (`(tabs)/plan/index.tsx`)
 - Plan tab opens the first onboarding step (WHERE). Progress bars: WHERE olive, WHEN/WHAT/HOW muted; circular close returns to Explore.
 - Large **Where?** title + white pill search (“Search destinations”).
 - Swipeable **Trending** / **Saved** lists (fire / bookmark icons + page dots). Multi-select cards: white `rounded-[32px]`, 64×64 thumb; selected = olive `#536600` border + check.
-- Floating olive **“N Selected →”** CTA when selection count ≥ 1 (Next stub until WHEN step).
+- Floating olive **“N Selected →”** CTA when selection count ≥ 1 → navigates to When (`/plan/when`) with selected destination ids.
+
+### 1c. Plan — When? (`(tabs)/plan/when.tsx`)
+- Nested under Plan tab (floating tab dock stays visible). Progress: WHEN olive; circular **back** returns to Where.
+- Large **When?** title + vertical month calendars (April 2026 + 11 months). Tap to set range (start → end; third tap resets).
+- Selected days: olive filled circles + white numerals.
+- Floating olive CTA when range complete: **“April 2 – April 9 →”** style label (Next stub until WHAT).
 
 ### 2. My Trips (`my-trip.tsx`)
 - Large "My Trips" title with Planned / Past Trips toggle.

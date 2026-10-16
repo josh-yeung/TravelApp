@@ -21,9 +21,9 @@ import {
 } from "@/constants/plan-destinations";
 
 const ICON_SEARCH =
-  require("../../assets/images/plan/search.svg") as ImageSourcePropType;
+  require("../../../assets/images/plan/search.svg") as ImageSourcePropType;
 const ICON_NEXT =
-  require("../../assets/images/plan/next-arrow.svg") as ImageSourcePropType;
+  require("../../../assets/images/plan/next-arrow.svg") as ImageSourcePropType;
 
 export default function PlanScreen() {
   const insets = useSafeAreaInsets();
@@ -46,7 +46,8 @@ export default function PlanScreen() {
     <View className="flex-1 bg-background" style={{ paddingTop: insets.top }}>
       <PlanProgressHeader
         activeStep={0}
-        onClose={() => router.replace("/")}
+        actionVariant="close"
+        onActionPress={() => router.replace("/")}
       />
 
       <View className="relative flex-1">
@@ -130,7 +131,10 @@ export default function PlanScreen() {
                 elevation: 4,
               }}
               onPress={() => {
-                // Stub until WHEN step exists
+                router.push({
+                  pathname: "/plan/when",
+                  params: { destinations: selectedIds.join(",") },
+                });
               }}
             >
               <Text className="text-sm font-poppins-semibold text-white tracking-[0.7px] leading-5">
