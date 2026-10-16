@@ -30,9 +30,9 @@
 - `agent_docs/testing.md`: Verification strategy.
 
 ## Current State (Update This!)
-**Last Updated:** October 12, 2026
+**Last Updated:** October 15, 2026
 **Working On:** Phase 2 — Two-Brain System
-**Recently Completed:** Bookings hub + trip bookings screens — My Trips bookmark → hub; trip calendar map-pin → trip bookings
+**Recently Completed:** Removed Bookings hub — trip bookings only via calendar map-pin (`/bookings/[tripId]`); My Trips bookmark is decorative
 **Blocked By:** MapLibre needs a custom Expo dev client (not Expo Go) — Expo Go shows map placeholders instead of crashing; Supabase project credentials if not already in `.env`
 
 ## Roadmap
@@ -47,7 +47,7 @@
 - [ ] Build Interactive Timeline (Drag-and-drop cards)
 - [x] Profile screen with MapLibre world map (country shading foundation)
 - [x] Integrate MapLibre UI for itinerary visual routing (trip day map + pins; routing polish later)
-- [x] Build Integrated Bookings Hub (mock UI; provider deep links later)
+- [x] Build trip Bookings screen (mock UI; provider deep links later; no cross-trip hub)
 
 ## What NOT To Do
 - Do NOT expose Google or Gemini API keys in the mobile frontend (use Supabase Edge Functions).

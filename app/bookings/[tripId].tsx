@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -22,6 +22,7 @@ import { formatTripDateRange } from "@/lib/calendar";
 const ICON_BACK = require("../../assets/images/bookings/back.svg") as ImageSourcePropType;
 const ICON_MAP_PIN = require("../../assets/images/bookings/map-pin.svg") as ImageSourcePropType;
 const ICON_CALENDAR = require("../../assets/images/bookings/calendar-sm.svg") as ImageSourcePropType;
+const ICON_BED = require("../../assets/images/bookings/bed.svg") as ImageSourcePropType;
 const ICON_CAR = require("../../assets/images/bookings/car.svg") as ImageSourcePropType;
 
 function CircleIconButton({
@@ -63,6 +64,7 @@ export default function TripBookingsScreen() {
   const trip = typeof tripId === "string" ? getTripById(tripId) : undefined;
   const bookings =
     typeof tripId === "string" ? getTripBookings(tripId) : undefined;
+  const [staysSearchExpanded, setStaysSearchExpanded] = useState(false);
 
   useEffect(() => {
     if (!trip) {
@@ -162,8 +164,25 @@ export default function TripBookingsScreen() {
           </View>
 
           <View className="w-full gap-4 pt-6">
-            <BookingSectionHeader title="Stays" />
-            <BookingStaysSearchCard />
+            <BookingSectionHeader
+              title="Stays"
+              expanded={staysSearchExpanded}
+              onAddPress={() =>
+                setStaysSearchExpanded((prev) => !prev)
+              }
+            />
+            {staysSearchExpanded ? (
+              <BookingStaysSearchCard />
+            ) : (
+              <BookingEmptyState
+                icon={ICON_BED}
+                iconWidth={37}
+                iconHeight={33}
+                message="No stays yet"
+                ctaLabel="Find a place to stay"
+                onCtaPress={() => setStaysSearchExpanded(true)}
+              />
+            )}
           </View>
 
           <View className="w-full gap-4 pt-6">

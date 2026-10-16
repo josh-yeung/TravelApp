@@ -80,11 +80,6 @@ const TRIP_BOOKINGS: Record<string, TripBookingsSummary> = {
   },
 };
 
-/** Flights shown on the global Bookings hub (Figma shows the Paris card). */
-export function getHubFlights(): FlightBooking[] {
-  return TRIP_BOOKINGS.paris?.flights ?? [];
-}
-
 export function getTripBookings(
   tripId: string
 ): TripBookingsSummary | undefined {

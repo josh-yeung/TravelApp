@@ -40,7 +40,7 @@
 - Frosted white trip cards (`rounded-[32px]`) with 96×96 destination image, destination name, forest date badge + lime accent text, and ellipsis menu.
 - Tapping a trip card opens the Trip Calendar (`/trip/[id]`).
 - White "Plan Manually" pill CTA that opens the onboarding wizard.
-- Top-left bookmark opens Bookings hub (`/bookings`).
+- Top-left bookmark is decorative (no navigation).
 - Top-right person button navigates to Profile (`/profile`).
 
 ### 2b. Trip Calendar (`trip/[id].tsx`)
@@ -72,16 +72,11 @@
 - **Trip day map (`TripDayMap`):** Full-bleed demotiles style; camera fits day spot bounds (or city center). Circle markers — olive fill + lime halo/stroke.
 - **Location Detail Overlay (upcoming):** When a user taps a pin, display details in a floating `<BlurView>` matching itinerary action bars.
 
-### 6. Bookings Hub (`bookings/index.tsx`)
-- Opened from My Trips bookmark; stack screen with bookmark + profile header buttons.
-- Forest **Bookings** title; sections Flights / Stays / Cars with lime `#d4ff00` `+` stubs.
-- Flight cards: frosted white `rounded-[32px]`, airport codes, plane path + olive duration, schedule row.
-- Stays: frosted search card (`rounded-[48px]`) with Where/When/Who pills, lime Search CTA, and Deals From rows (Expedia / Tripadvisor / Airbnb) — stubs.
-- Cars: dashed `#c5c9ac` empty placeholder with CTA text (stub).
-- Tapping the Paris flight card opens trip Bookings.
-
-### 6b. Trip Bookings (`bookings/[tripId].tsx`)
-- Opened from trip calendar map-pin or hub flight card.
+### 6. Trip Bookings (`bookings/[tripId].tsx`)
+- Opened from trip calendar map-pin only (no cross-trip hub).
 - Header: back + map-pin (map-pin returns to `/trip/[id]`).
 - Trip title, calendar date range, hero image with bottom gradient.
-- Forest **Bookings** heading; Flights cards + Stays search card (same as hub) + Cars empty state (“Find a car rental”).
+- Forest **Bookings** heading; sections Flights / Stays / Cars with lime `#d4ff00` `+` stubs.
+- Flight cards: frosted white `rounded-[32px]`, airport codes, plane path + olive duration, schedule row.
+- Stays: empty state by default; plus (or CTA) expands frosted search card (`rounded-[48px]`) with Where/When/Who pills, lime Search CTA, and Deals From rows (Expedia / Tripadvisor / Airbnb) — stubs. Expanded: lime button becomes X and collapses back to empty state.
+- Cars: dashed `#c5c9ac` empty placeholder with CTA text (stub).

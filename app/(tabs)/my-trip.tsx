@@ -23,10 +23,7 @@ export default function MyTripsScreen() {
         showsVerticalScrollIndicator={false}
       >
         <View className="flex-row items-center justify-between px-5 pt-2 pb-4">
-          <Pressable
-            onPress={() => router.push("/bookings")}
-            className="h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white"
-          >
+          <Pressable className="h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white">
             <Ionicons name="bookmark-outline" size={20} color="#181C1D" />
           </Pressable>
           <Pressable
