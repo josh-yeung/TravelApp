@@ -35,6 +35,12 @@
 - **Category Chips:** Pill-shaped horizontal scroll. Active chip has a white background, dark border, and a Lime Green icon.
 - **Bottom Navigation:** 3-tab light floating dock — Explore / Plan / Trips. White translucent pill, thin black border; active tab uses a forest-green pill behind the icon.
 
+### 1b. Plan — Where? (`plan.tsx`)
+- Plan tab opens the first onboarding step (WHERE). Progress bars: WHERE olive, WHEN/WHAT/HOW muted; circular close returns to Explore.
+- Large **Where?** title + white pill search (“Search destinations”).
+- Swipeable **Trending** / **Saved** lists (fire / bookmark icons + page dots). Multi-select cards: white `rounded-[32px]`, 64×64 thumb; selected = olive `#536600` border + check.
+- Floating olive **“N Selected →”** CTA when selection count ≥ 1 (Next stub until WHEN step).
+
 ### 2. My Trips (`my-trip.tsx`)
 - Large "My Trips" title with Planned / Past Trips toggle.
 - Frosted white trip cards (`rounded-[32px]`) with 96×96 destination image, destination name, forest date badge + lime accent text, and ellipsis menu.
