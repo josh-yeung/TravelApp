@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   View,
   Text,
@@ -12,12 +13,23 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { PlanActivityRow } from "@/components/plan-activity-row";
 import { PlanProgressHeader } from "@/components/plan-progress-header";
+import { PlanRestaurantFilters } from "@/components/plan-restaurant-filters";
 import { PLAN_ACTIVITIES } from "@/constants/plan-activities";
+import {
+  DEFAULT_SELECTED_CUISINE_IDS,
+  DEFAULT_SELECTED_DINING_STYLE_IDS,
+} from "@/constants/plan-restaurant-filters";
 
 const ICON_BOOKMARK =
   require("../../../assets/images/plan/what/bookmark.svg") as ImageSourcePropType;
 const ICON_WAND =
   require("../../../assets/images/plan/what/wand.svg") as ImageSourcePropType;
+const ICON_NEXT =
+  require("../../../assets/images/plan/next-arrow.svg") as ImageSourcePropType;
+
+function toggleId(ids: string[], id: string): string[] {
+  return ids.includes(id) ? ids.filter((item) => item !== id) : [...ids, id];
+}
 
 export default function PlanWhatScreen() {
   const insets = useSafeAreaInsets();
@@ -27,6 +39,21 @@ export default function PlanWhatScreen() {
     startDate?: string;
     endDate?: string;
   }>();
+
+  const [expandedActivityId, setExpandedActivityId] = useState<string | null>(
+    null
+  );
+  const [selectedCuisineIds, setSelectedCuisineIds] = useState<string[]>(
+    DEFAULT_SELECTED_CUISINE_IDS
+  );
+  const [selectedDiningStyleIds, setSelectedDiningStyleIds] = useState<
+    string[]
+  >(DEFAULT_SELECTED_DINING_STYLE_IDS);
+
+  const restaurantsExpanded = expandedActivityId === "restaurants";
+  const hasRestaurantSelections =
+    selectedCuisineIds.length > 0 || selectedDiningStyleIds.length > 0;
+  const showNextCta = restaurantsExpanded && hasRestaurantSelections;
 
   return (
     <View className="flex-1 bg-background" style={{ paddingTop: insets.top }}>
@@ -83,15 +110,40 @@ export default function PlanWhatScreen() {
           </Pressable>
 
           <View className="w-full gap-4">
-            {PLAN_ACTIVITIES.map((activity) => (
-              <PlanActivityRow
-                key={activity.id}
-                activity={activity}
-                onPress={() => {
-                  // Stub — category detail later
-                }}
-              />
-            ))}
+            {PLAN_ACTIVITIES.map((activity) => {
+              const isRestaurants = activity.id === "restaurants";
+              const expanded =
+                isRestaurants && expandedActivityId === "restaurants";
+
+              return (
+                <View key={activity.id} className="w-full gap-4">
+                  <PlanActivityRow
+                    activity={activity}
+                    expanded={expanded}
+                    onPress={() => {
+                      if (!isRestaurants) {
+                        return;
+                      }
+                      setExpandedActivityId((prev) =>
+                        prev === "restaurants" ? null : "restaurants"
+                      );
+                    }}
+                  />
+                  {expanded ? (
+                    <PlanRestaurantFilters
+                      selectedCuisineIds={selectedCuisineIds}
+                      selectedDiningStyleIds={selectedDiningStyleIds}
+                      onToggleCuisine={(id) =>
+                        setSelectedCuisineIds((prev) => toggleId(prev, id))
+                      }
+                      onToggleDiningStyle={(id) =>
+                        setSelectedDiningStyleIds((prev) => toggleId(prev, id))
+                      }
+                    />
+                  ) : null}
+                </View>
+              );
+            })}
           </View>
         </ScrollView>
 
@@ -124,16 +176,31 @@ export default function PlanWhatScreen() {
               elevation: 4,
             }}
             onPress={() => {
-              // Stub until HOW step exists
+              router.push({
+                pathname: "/plan/how",
+                params: {
+                  destinations:
+                    typeof destinations === "string" ? destinations : "",
+                  startDate: typeof startDate === "string" ? startDate : "",
+                  endDate: typeof endDate === "string" ? endDate : "",
+                  cuisines: selectedCuisineIds.join(","),
+                  diningStyles: selectedDiningStyleIds.join(","),
+                  mode: showNextCta ? "next" : "surprise",
+                },
+              });
             }}
           >
             <Text className="text-sm font-poppins-semibold text-white tracking-[0.7px] leading-5">
-              Surprise Me
+              {showNextCta ? "Next" : "Surprise Me"}
             </Text>
             <View className="pl-2">
               <Image
-                source={ICON_WAND}
-                style={{ width: 29, height: 21 }}
+                source={showNextCta ? ICON_NEXT : ICON_WAND}
+                style={
+                  showNextCta
+                    ? { width: 16, height: 16 }
+                    : { width: 29, height: 21 }
+                }
                 contentFit="contain"
               />
             </View>

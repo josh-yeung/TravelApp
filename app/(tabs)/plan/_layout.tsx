@@ -7,6 +7,7 @@ export default function PlanStackLayout() {
       <Stack.Screen name="when" />
       <Stack.Screen name="what" />
       <Stack.Screen name="what-saved" />
+      <Stack.Screen name="how" />
     </Stack>
   );
 }

@@ -50,12 +50,23 @@
 ### 1d. Plan — What? (`(tabs)/plan/what.tsx`)
 - Nested under Plan tab (floating tab dock stays). Progress: WHAT olive; circular **back** returns to When.
 - Large **What?** title; featured white **Saved** card (bookmark + forest label) → `/plan/what-saved`.
-- Activity rows: Landmarks / Restaurants / Nightlife / Nature / Shopping — mint icon circle, label, chevron (stubs).
-- Floating olive **Surprise Me** + wand CTA (stub until HOW).
+- Activity rows: Landmarks / Restaurants / Nightlife / Nature / Shopping — mint icon circle, label, chevron.
+- **Restaurants** expands inline (accordion): olive header + chevron up; **Cuisines** 2×2 chips (French / Italian / Japanese / English) and **Dining Styles** stacked chips (Fine Dining / Local Favourites / Rooftop). Multi-select; selected = lime `#d4ff00` border + check, unselected = faint border + plus. Defaults: French, Fine Dining, Local Favourites. Other categories remain stubs.
+- Floating olive CTA: **Surprise Me** + wand by default; **Next** + arrow when Restaurants is expanded with selections. Both navigate to How.
 
 ### 1e. Plan — What Saved (`(tabs)/plan/what-saved.tsx`)
 - Same WHAT progress + back. Active mint `#edf8f4` Saved pill; search filters mock saved places.
 - Section **SAVED** + place cards (thumb, name, city) — Louvre, Eiffel Tower, Notre Dame, Arc de Triomphe stubs.
+
+### 1f. Plan — How? (`(tabs)/plan/how.tsx`)
+- Progress: HOW olive; circular **back** returns to What.
+- Large **How?** title. Scroll continues past accommodation into budget + pacing.
+- **Starting Location:** forest uppercase label + “Use Current Location” GPS stub; white pill with house icon + editable city text (default Toronto, Canada).
+- **Transit Preferences:** subtitle “Select travel modes”; 2×2 chips — Flights, Trains, Buses, Car Rentals. Selected = lime `#d4ff00` border + lime icon circle + check; unselected = faint border + mint circle + plus. Defaults: Flights, Trains.
+- **Accommodation Preferences:** subtitle “Select lodging styles”; chips — Hostels, Airbnb, Hotels. Same select states. Defaults: Airbnb, Hotels.
+- **Trip Budget:** white card with estimated total (`$X,XXX` CAD), forest slider `$500`–`$5,000` (default `$2,000`), scale labels, and tier pills Backpacker / Comfort / Luxury (Comfort selected by default).
+- **Daily Pacing:** mint-gray card with “Target spots per day” stepper (1–8, default 3) and single-select Slow / Balanced / Fast chips (Balanced default; presets set spots to 2 / 3 / 5).
+- Floating olive **Plan** + pencil when starting location, ≥1 transit, ≥1 accommodation, and pacing are set (defaults satisfy this; clears if those are emptied). Stub until itinerary generation.
 
 ### 2. My Trips (`my-trip.tsx`)
 - Large "My Trips" title with Planned / Past Trips toggle.
