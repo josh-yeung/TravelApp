@@ -18,7 +18,7 @@ import {
 } from "@/constants/explore-destinations";
 
 const ICON_SEARCH =
-  require("../../assets/images/explore/search.svg") as ImageSourcePropType;
+  require("../../../assets/images/explore/search.svg") as ImageSourcePropType;
 
 function filterSections(
   sections: ExploreSectionData[],
@@ -47,6 +47,16 @@ export default function ExploreScreen() {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const sections = filterSections(EXPLORE_SECTIONS, query);
+
+  const handleDestinationPress = (destinationId: string) => {
+    if (destinationId !== "paris-popular") {
+      return;
+    }
+    router.push({
+      pathname: "/explore/city/[id]",
+      params: { id: destinationId },
+    });
+  };
 
   return (
     <View className="flex-1 bg-background" style={{ paddingTop: insets.top }}>
@@ -95,7 +105,11 @@ export default function ExploreScreen() {
         </View>
 
         {sections.map((section) => (
-          <ExploreSection key={section.id} section={section} />
+          <ExploreSection
+            key={section.id}
+            section={section}
+            onDestinationPress={handleDestinationPress}
+          />
         ))}
       </ScrollView>
     </View>

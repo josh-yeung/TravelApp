@@ -19,7 +19,7 @@ interface TabItem {
 
 const TAB_CONFIG: TabItem[] = [
   {
-    name: "index",
+    name: "explore",
     label: "Explore",
     activeIcon: "compass",
     inactiveIcon: "compass-outline",
@@ -58,9 +58,10 @@ function CustomTabBar({ state, navigation }: TabBarProps) {
         }}
       >
         {state.routes.map((route, index) => {
-          const isFocused = state.index === index;
-          const config = TAB_CONFIG[index];
+          const config = TAB_CONFIG.find((tab) => tab.name === route.name);
           if (!config) return null;
+
+          const isFocused = state.index === index;
 
           const onPress = () => {
             const event = navigation.emit({
@@ -119,7 +120,7 @@ export default function TabLayout() {
       tabBar={(props) => <CustomTabBar {...props} />}
       screenOptions={{ headerShown: false }}
     >
-      <Tabs.Screen name="index" />
+      <Tabs.Screen name="explore" />
       <Tabs.Screen name="plan" />
       <Tabs.Screen name="my-trip" />
     </Tabs>

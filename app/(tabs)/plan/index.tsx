@@ -47,7 +47,7 @@ export default function PlanScreen() {
       <PlanProgressHeader
         activeStep={0}
         actionVariant="close"
-        onActionPress={() => router.replace("/")}
+        onActionPress={() => router.replace("/explore/index")}
       />
 
       <View className="relative flex-1">

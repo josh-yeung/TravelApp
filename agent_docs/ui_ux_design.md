@@ -29,11 +29,17 @@
 
 ## Key Screen Implementations
 
-### 1. The Onboarding/Home Screen (index.tsx)
-- Large, bold greeting.
-- **Search Bar:** Very light gray, heavily rounded, minimal styling, with thin line icons.
-- **Category Chips:** Pill-shaped horizontal scroll. Active chip has a white background, dark border, and a Lime Green icon.
+### 1. Explore Home (`(tabs)/explore/index.tsx`)
+- Nested Explore stack (floating dock stays). Bookmark (decorative) + profile → `/profile`.
+- **Search Bar:** White pill, olive placeholder “Search Destination”, search icon.
+- Destination carousels: Popular (featured) / Europe / Asia. Tapping **Paris** (`paris-popular`) → `/explore/city/paris-popular`.
 - **Bottom Navigation:** 3-tab light floating dock — Explore / Plan / Trips. White translucent pill, thin black border; active tab uses a forest-green pill behind the icon.
+
+### 1a. Explore City (`(tabs)/explore/city/[id].tsx`)
+- Nested under Explore tab (dock stays). Top chrome: circular back → Explore home; profile → `/profile`.
+- Large city title + tagline; gray pill search “Search experiences” (filters mock list locally).
+- **Categories:** section header + View all stub; horizontal pills — active = forest `#44655A` + white text; inactive = white + `#c5c9ac` border.
+- **Popular:** full-width `h-[288px]` `rounded-[32px]` experience cards — photo, bottom gradient, star + rating, title, frosted lime-tint category pill, neighborhood, top-right frosted heart. Paris mock: Eiffel Tower, Louvre Museum.
 
 ### 1b. Plan — Where? (`(tabs)/plan/index.tsx`)
 - Plan tab opens the first onboarding step (WHERE). Progress bars: WHERE olive, WHEN/WHAT/HOW muted; circular close returns to Explore.

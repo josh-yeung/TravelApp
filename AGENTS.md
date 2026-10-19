@@ -30,9 +30,9 @@
 - `agent_docs/testing.md`: Verification strategy.
 
 ## Current State (Update This!)
-**Last Updated:** October 18, 2026
+**Last Updated:** October 19, 2026
 **Working On:** Phase 2 — Two-Brain System
-**Recently Completed:** Explore tab UI (search + Popular / Europe / Asia carousels from Figma; mock data; profile nav)
+**Recently Completed:** Explore City screen for Paris (Figma 151:196) — Explore tab is `(tabs)/explore` nested stack; Paris Popular card → `/explore/city/paris-popular`
 **Blocked By:** MapLibre needs a custom Expo dev client (not Expo Go) — Expo Go shows map placeholders instead of crashing; Supabase project credentials if not already in `.env`
 
 ## Roadmap
@@ -49,6 +49,7 @@
 - [x] Integrate MapLibre UI for itinerary visual routing (trip day map + pins; routing polish later)
 - [x] Build trip Bookings screen (mock UI; provider deep links later; no cross-trip hub)
 - [x] Explore tab UI (Figma: search, popular + regional destination carousels; mock only)
+- [x] Explore City screen (Paris mock from Figma; nested Explore stack keeps floating dock)
 
 ## What NOT To Do
 - Do NOT expose Google or Gemini API keys in the mobile frontend (use Supabase Edge Functions).
