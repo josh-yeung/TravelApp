@@ -30,7 +30,7 @@
 ## Key Screen Implementations
 
 ### 1. Explore Home (`(tabs)/explore/index.tsx`)
-- Nested Explore stack (floating dock stays). Bookmark (decorative) + profile → `/profile`.
+- Nested Explore stack (floating dock stays). Bookmark → `/saved` (Saved Places); profile → `/profile`.
 - **Search Bar:** White pill, olive placeholder “Search Destination”, search icon.
 - Destination carousels: Popular (featured) / Europe / Asia. Tapping **Paris** (`paris-popular`) → `/explore/city/paris-popular`.
 - **Bottom Navigation:** 3-tab light floating dock — Explore / Plan / Trips. White translucent pill, thin black border; active tab uses a forest-green pill behind the icon.
@@ -79,7 +79,7 @@
 - Frosted white trip cards (`rounded-[32px]`) with 96×96 destination image, destination name, forest date badge + lime accent text, and ellipsis menu.
 - Tapping a trip card opens the Trip Calendar (`/trip/[id]`).
 - White "Plan Manually" pill CTA that opens the onboarding wizard.
-- Top-left bookmark is decorative (no navigation).
+- Top-left bookmark opens Saved Places (`/saved`).
 - Top-right person button navigates to Profile (`/profile`).
 
 ### 2b. Trip Calendar (`trip/[id].tsx`)
@@ -99,6 +99,16 @@
 - Metric cards: countries visited + % of world progress bar (live from visited store).
 - User card: avatar, name/age, country, trips/saved stats.
 - Settings and Edit profile rows (UI stubs for now).
+
+### 3b. Saved Places / Bookmarks (`saved.tsx`)
+- Root stack screen (hides tab dock) opened from the bookmark button on Explore or My Trips; back returns to the opening tab.
+- Header: circular back / share (`#C5C9AC` borders, same as Profile); centered “Bookmarks” title.
+- “Saved Places” 28px title + gray `#e6e9ea` “6 Collections” pill.
+- **Collections:** folder icon + heading, lime `#d4ff00` “+ New Collection” pill (stub). Horizontal 176×224 `rounded-2xl` cards — cover photo, `#002018` bottom gradient, lime “N spots” pill + lime bookmark, white title, `#c6eadc` subtitle. Mock: Parisian Cafes & Views, Alpine Skiing, Eco-Stays & Hostels.
+- **Search:** `#f1f4f5` 48px pill “Search saved spots”, search icon left, filter icon right (stub). Filters the feed locally.
+- **Quick chips:** All (42) / Paris (14) / Cafes (6) / Landmarks (9). Active = forest fill + lime dot + lime text; inactive = `#e6e9ea` + `#444932` text. Chips filter by city/category.
+- **Bookmarked Spots:** heading + “Sort: Recent” (stub). Full-width white `rounded-2xl` feed cards: 208px photo + bottom gradient, frosted forest category pill (top-left), frosted forest 40px bookmark button (top-right — removes from local list), frosted black rating pill (star + rating + review count). Body: 24px title, map-pin + location, forest “View Details →” (stub). Mock: Eiffel Tower, Louvre Museum, Tokyo Tower, Banff National Park.
+- Bookmarks are in-memory only for now (Supabase persistence later).
 
 ### 4. The Itinerary Timeline & Details (itinerary.tsx)
 - Edge-to-edge header images with a subtle dark gradient overlay at the bottom so overlaid white text remains readable.

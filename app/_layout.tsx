@@ -47,6 +47,7 @@ export default function RootLayout() {
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="profile" />
+          <Stack.Screen name="saved" />
           <Stack.Screen name="trip/[id]" />
           <Stack.Screen name="bookings/[tripId]" />
           <Stack.Screen

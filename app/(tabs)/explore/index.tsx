@@ -67,7 +67,10 @@ export default function ExploreScreen() {
         keyboardShouldPersistTaps="handled"
       >
         <View className="flex-row items-center justify-between px-[11px] pb-4 pt-[7px]">
-          <Pressable className="h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white">
+          <Pressable
+            onPress={() => router.push("/saved")}
+            className="h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white"
+          >
             <Ionicons name="bookmark-outline" size={20} color="#181C1D" />
           </Pressable>
           <Pressable
